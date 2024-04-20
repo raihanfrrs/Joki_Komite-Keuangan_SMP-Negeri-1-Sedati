@@ -18,21 +18,15 @@ $(function () {
     headingColor = config.colors.headingColor;
   }
 
-  var dt_brand_table = $('#listMasterCashierTable');
+  var dt_brand_table = $('#listAdminNewsTable');
 
   if (dt_brand_table.length) {
     var dt_user = dt_brand_table.DataTable({
-      ajax: "/listMasterCashierTable",
+      ajax: "/listAdminNewsTable",
       columns: [
         { data: '' },
-        { data: 'index', class: 'text-center' },
-        { data: 'name', class: 'text-center' },
-        { data: 'email', class: 'text-center' },
-        { data: 'phone', class: 'text-center' },
-        { data: 'place_date_of_birth', class: 'text-center' },
-        { data: 'gender', class: 'text-center' },
-        { data: 'address', class: 'text-center' },
-        { data: 'created_at', class: 'text-center' },
+        { data: 'title', class: 'text-center' },
+        { data: 'date', class: 'text-center' },
         { data: 'status', class: 'text-center' },
         { data: 'action' }
       ],
@@ -51,55 +45,19 @@ $(function () {
           targets: 1,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.index;
+            return full.title;
           }
         },
         {
           targets: 2,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.name;
+            return full.date;
           }
         },
         {
           targets: 3,
           responsivePriority: 4,
-          render: function (data, type, full, meta) {
-            return full.email;
-          }
-        },
-        {
-          targets: 4,
-          render: function (data, type, full, meta) {
-            return full.phone;
-          }
-        },
-        {
-          targets: 5,
-          render: function (data, type, full, meta) {
-            return full.place_date_of_birth;
-          }
-        },
-        {
-          targets: 6,
-          render: function (data, type, full, meta) {
-            return full.gender;
-          }
-        },
-        {
-          targets: 7,
-          render: function (data, type, full, meta) {
-            return full.address;
-          }
-        },
-        {
-          targets: 8,
-          render: function (data, type, full, meta) {
-            return full.created_at;
-          }
-        },
-        {
-          targets: 9,
           render: function (data, type, full, meta) {
             return full.status;
           }
@@ -140,7 +98,7 @@ $(function () {
               text: '<i class="ti ti-printer me-2" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                columns: [1, 2, 3],
               },
               customize: function (win) {
                 $(win.document.body)
@@ -160,7 +118,7 @@ $(function () {
               text: '<i class="ti ti-file-text me-2" ></i>Csv',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                columns: [1, 2, 3],
               }
             },
             {
@@ -168,7 +126,7 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                columns: [1, 2, 3],
               }
             },
             {
@@ -176,7 +134,7 @@ $(function () {
               text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                columns: [1, 2, 3],
               }
             },
             {
@@ -184,16 +142,16 @@ $(function () {
               text: '<i class="ti ti-copy me-2" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                columns: [1, 2, 3],
               }
             }
           ]
         },
         {
-          text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Kasir</span>',
+          text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Berita</span>',
           className: 'add-new btn btn-primary',
           attr: {
-            'id': 'button-add-new-cashier', 
+            'id': 'button-add-new-news', 
           }
         }
       ],
@@ -232,6 +190,10 @@ $(function () {
       }
     });
   }
+
+  $(document).on('click', '#button-add-new-news', function () {
+    location.href = '/admin/news/add';
+  })
 
   // Delete Record
   $(document).on('click', '#button-delete-cashier', function () {

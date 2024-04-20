@@ -58,23 +58,7 @@
 
     <!-- Page CSS -->
     @auth
-        @if (auth()->user()->level == 'admin')
-            @if (request()->is('master/cashier/*'))
-                <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-profile.css') }}" />
-            @endif
-        @elseif (auth()->user()->level == 'cashier')
-            @if (request()->is('invoice/*'))
-                <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/app-invoice.css') }}" />
-            @elseif (request()->is('invoice/*/print'))
-                <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/app-invoice-print.css') }}" />
-            @endif
-        @endif
-        
-        @if (request()->is('profile', 'teams'))
-            <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-profile.css') }}" />
-        @elseif (request()->is('404', '403'))
-            <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-misc.css') }}" />
-        @endif
+
     @else
         <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
     @endauth
@@ -167,60 +151,19 @@
     @auth
         @if (auth()->user()->level == 'admin')
             <script src="{{ asset('js/admin.js') }}"></script>
-        @elseif (auth()->user()->level == 'cashier')
-            <script src="{{ asset('js/cashier.js') }}"></script>
         @endif
     @endauth
 
     <!-- Page JS -->
     @auth
         @if (auth()->user()->level == 'admin')
-            @if (request()->is('master/cashier', 'master/cashier/*'))
-                <script src="{{ asset('assets/js/app-master-cashier-list.js') }}"></script>
-                <script src="{{ asset('assets/js/wizard-ex-property-listing.js') }}"></script>
-                <script src="{{ asset('assets/js/pages-profile.js') }}"></script>
-                <script src="{{ asset('assets/js/app-cashier-activity-detail-list.js') }}"></script>
-            @elseif (request()->is('master/product'))
-                <script src="{{ asset('assets/js/app-master-product-list.js') }}"></script>
-            @elseif (request()->is('master/category'))
-                <script src="{{ asset('assets/js/app-master-category-list.js') }}"></script>
-            @elseif (request()->is('admin/sales-report/daily'))
-                <script src="{{ asset('assets/js/app-sales-report-admin-daily-list.js') }}"></script>
-            @elseif (request()->is('admin/sales-report/monthly'))
-                <script src="{{ asset('assets/js/app-sales-report-admin-monthly-list.js') }}"></script>
-            @elseif (request()->is('admin/sales-report/yearly'))
-                <script src="{{ asset('assets/js/app-sales-report-admin-yearly-list.js') }}"></script>
-            @elseif (request()->is('admin/performance-report'))
-                <script src="{{ asset('assets/js/app-performance-report-admin-list.js') }}"></script>
-            @elseif (request()->is('admin/invoice'))
-                <script src="{{ asset('assets/js/app-invoice-admin-list.js') }}"></script>
-            @elseif (request()->is('admin/sales-report-print/*/*') || request()->is('admin/invoice/*/*'))
-                <script src="{{ asset('assets/js/app-invoice-print.js') }}"></script>
+            @if (request()->is('admin/news'))
+                <script src="{{ asset('assets/js/app-admin-news-list.js') }}"></script>
+            @elseif (request()->is('admin/payment'))
+                <script src="{{ asset('assets/js/app-admin-payment-list.js') }}"></script>
+            @elseif (request()->is('admin/class'))
+                <script src="{{ asset('assets/js/app-admin-class-list.js') }}"></script>
             @endif
-        @elseif (auth()->user()->level == 'cashier')
-            @if (request()->is('inventory/product'))
-                <script src="{{ asset('assets/js/app-inventory-product-list.js') }}"></script>
-            @elseif (request()->is('invoice/*/print'))
-                <script src="{{ asset('assets/js/app-invoice-print.js') }}"></script>
-            @elseif (request()->is('cashier/sales-report'))
-                <script src="{{ asset('assets/js/app-sales-report-cashier-list.js') }}"></script>
-            @endif
-        @endif
-
-        @if (request()->is('settings/profile'))
-            <script src="{{ asset('assets/js/pages-account-settings-account.js')  }}"></script>
-        @elseif (request()->is('settings/account'))
-            <script src="{{ asset('assets/js/pages-account-settings-security.js') }}"></script>
-        @elseif (request()->is('profile', 'teams'))
-            <script src="{{ asset('assets/js/app-admin-activity-list.js') }}"></script>
-            <script src="{{ asset('assets/js/app-cashier-activity-list.js') }}"></script>
-            <script src="{{ asset('assets/js/pages-profile.js') }}"></script>
-        @elseif (request()->is('trash/product'))
-            <script src="{{ asset('assets/js/app-trash-product-list.js') }}"></script>
-        @elseif (request()->is('trash/category'))
-            <script src="{{ asset('assets/js/app-trash-category-list.js') }}"></script>
-        @elseif (request()->is('trash/cashier'))
-            <script src="{{ asset('assets/js/app-trash-cashier-list.js') }}"></script>
         @endif
     @else
         <script src="{{ asset('assets/js/pages-auth.js') }}"></script>
