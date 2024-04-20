@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->enum('level', ['admin', 'wali murid'])->default('wali murid');
-            $table->timestamps();
+        Schema::table('kelas', function (Blueprint $table) {
+            $table->foreign(['admin_id'], 'kelas_ibfk_1')->references(['id'])->on('admins')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::table('kelas', function (Blueprint $table) {
+            $table->dropForeign('kelas_ibfk_1');
+        });
     }
 };
