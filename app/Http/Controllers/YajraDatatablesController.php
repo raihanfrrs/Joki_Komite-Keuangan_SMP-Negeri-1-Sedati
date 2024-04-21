@@ -75,4 +75,49 @@ class YajraDatatablesController extends Controller
         ->rawColumns(['index', 'action'])
         ->make(true);
     }
+
+    public function wali_murid_news()
+    {
+        $news = $this->news->getAllNews();
+
+        return DataTables::of($news)
+        ->addColumn('title', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-news.title-column', compact('model'))->render();
+        })
+        ->addColumn('date', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-news.date-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-news.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['title', 'date', 'action'])
+        ->make(true);
+    }
+    
+    public function wali_murid_payment()
+    {
+        $payments = $this->payment->getAllPayments();
+
+        return DataTables::of($payments)
+        ->addColumn('index', function ($model) use ($payments) {
+            return $payments->search($model) + 1;
+        })
+        ->addColumn('necessity', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-payment.necessity-column', compact('model'))->render();
+        })
+        ->addColumn('date', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-payment.date-column', compact('model'))->render();
+        })
+        ->addColumn('nominal', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-payment.nominal-column', compact('model'))->render();
+        })
+        ->addColumn('status', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-payment.status-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-payment.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'necessity', 'date', 'nominal', 'status', 'action'])
+        ->make(true);
+    }
 }
