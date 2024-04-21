@@ -30,7 +30,7 @@ class PaymentSeeder extends Seeder
                 'id' => Uuid::uuid4()->toString(),
                 'wali_murid_id' => $wali_murid->id,
                 'name' => 'Noval Andriansyah',
-                'necessity' => '',
+                'necessity' => 'Sumbangan aset kelas',
                 'date' => now(),
                 'nominal' => 200000
             ],
