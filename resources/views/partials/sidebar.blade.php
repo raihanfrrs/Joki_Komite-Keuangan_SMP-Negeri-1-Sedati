@@ -34,25 +34,25 @@
       </li>
       <li class="menu-item {{ request()->is('admin/news', 'admin/news/*') ? 'active' : '' }}">
         <a href="{{ route('admin.news.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-users"></i>
+          <i class="menu-icon tf-icons ti ti-notebook"></i>
           <div data-i18n="Berita">Berita</div>
         </a>
       </li>
       <li class="menu-item {{ request()->is('admin/payment', 'admin/payment/*') ? 'active' : '' }}">
         <a href="{{ route('admin.payment.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-soup"></i>
+          <i class="menu-icon tf-icons ti ti-wallet"></i>
           <div data-i18n="Pembayaran">Pembayaran</div>
         </a>
       </li>
       <li class="menu-item {{ request()->is('admin/class', 'admin/class/*') ? 'active' : '' }}">
         <a href="{{ route('admin.class.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-box"></i>
+          <i class="menu-icon tf-icons ti ti-door"></i>
           <div data-i18n="Kelas">Kelas</div>
         </a>
       </li>
       <li class="menu-item {{ request()->is('admin/setting', 'admin/setting/*') ? 'active' : '' }}">
         <a href="{{ route('admin.setting.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-box"></i>
+          <i class="menu-icon tf-icons ti ti-settings"></i>
           <div data-i18n="Pengaturan">Pengaturan</div>
         </a>
       </li>
@@ -60,33 +60,27 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Menu</span>
       </li>
-      <li class="menu-item">
+      <li class="menu-item {{ request()->is('wali-murid/news', 'wali-murid/news/*') ? 'active' : '' }}">
         <a href="{{ route('wali.murid.news.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-users"></i>
+          <i class="menu-icon tf-icons ti ti-notebook"></i>
           <div data-i18n="Berita">Berita</div>
         </a>
       </li>
-      <li class="menu-item">
-        <a href="" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-soup"></i>
+      <li class="menu-item {{ request()->is('wali-murid/payment', 'wali-murid/payment/*') ? 'active' : '' }}">
+        <a href="{{ route('wali.murid.payment.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons ti ti-wallet"></i>
           <div data-i18n="Pembayaran">Pembayaran</div>
         </a>
       </li>
-      <li class="menu-item">
-        <a href="" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-soup"></i>
-          <div data-i18n="Pembayaran">Asset</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-box"></i>
+      <li class="menu-item {{ request()->is('wali-murid/class', 'wali-murid/class/*') ? 'active' : '' }}">
+        <a href="{{ route('wali.murid.class.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons ti ti-door"></i>
           <div data-i18n="Kelas">Kelas</div>
         </a>
       </li>
-      <li class="menu-item">
-        <a href="" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-box"></i>
+      <li class="menu-item {{ request()->is('wali-murid/setting', 'wali-murid/setting/*') ? 'active' : '' }}">
+        <a href="{{ route('wali.murid.setting.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons ti ti-settings"></i>
           <div data-i18n="Pengaturan">Pengaturan</div>
         </a>
       </li>

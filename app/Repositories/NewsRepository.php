@@ -11,6 +11,11 @@ class NewsRepository
         return News::all();
     }
 
+    public function getAllNewsByLimit($limit)
+    {
+        return News::limit($limit)->get();
+    }
+
     public function getNew($id)
     {
         return News::find($id);

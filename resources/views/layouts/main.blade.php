@@ -164,6 +164,12 @@
             @elseif (request()->is('admin/class'))
                 <script src="{{ asset('assets/js/app-admin-class-list.js') }}"></script>
             @endif
+        @elseif (auth()->user()->level == 'wali murid')
+            @if (request()->is('wali-murid/news'))
+                <script src="{{ asset('assets/js/app-wali-murid-news-list.js') }}"></script>
+            @elseif (request()->is('wali-murid/payment'))
+                <script src="{{ asset('assets/js/app-wali-murid-payment-list.js') }}"></script>
+            @endif
         @endif
     @else
         <script src="{{ asset('assets/js/pages-auth.js') }}"></script>

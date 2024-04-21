@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Tambah Berita - Admin
+    Tambah Pembayaran - Wali Murid
 @endsection
 
 @section('section-content')
@@ -10,30 +10,36 @@
         <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Tambah Berita</h5>
+            <h5 class="mb-0">Tambah Pembayaran</h5>
             </div>
             <div class="card-body">
             <form>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-name">Judul Berita</label>
+                    <label class="col-sm-2 col-form-label" for="basic-default-name">Nama Lengkap</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="basic-default-name" placeholder="Judul Berita">
+                        <input type="text" class="form-control" id="basic-default-name" placeholder="Nama Lengkap">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-company">Narasi</label>
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Keperluan</label>
                     <div class="col-sm-10">
-                        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Tuliskan Deskripsi Singkat"></textarea>
+                        <input type="text" class="form-control" id="basic-default-name" placeholder="Keperluan">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-phone">Tanggal Terbit</label>
+                    <label class="col-sm-2 col-form-label" for="basic-default-phone">Tanggal</label>
                     <div class="col-sm-10">
                         <input type="date" id="basic-default-phone" class="form-control phone-mask">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-message">Lampiran Berita</label>
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Nominal</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="basic-default-name" placeholder="Nominal">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-message">Bukti Pembayaran</label>
                     <div class="col-sm-10">
                         <input type="file" name="" id="" class="form-control">
                     </div>
