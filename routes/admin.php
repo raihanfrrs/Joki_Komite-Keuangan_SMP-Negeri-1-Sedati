@@ -11,7 +11,11 @@ Route::group(['middleware' => ['cekUserLogin:admin']], function(){
     Route::controller(AdminNewsController::class)->group(function () {
         Route::get('admin/news', 'admin_news_index')->name('admin.news.index');
         Route::get('admin/news/add', 'admin_news_create');
+        Route::post('admin/news', 'admin_news_store')->name('admin.news.store');
+        Route::get('admin/news/{news}/edit', 'admin_news_edit')->name('admin.news.edit');
+        Route::patch('admin/news/{news}', 'admin_news_update')->name('admin.news.update');
         Route::get('admin/news/{news}', 'admin_news_show')->name('admin.news.show');
+        Route::delete('admin/news/{news}', 'admin_news_destroy')->name('admin.news.destroy');
     });
 
     Route::controller(AdminPaymentController::class)->group(function () {
