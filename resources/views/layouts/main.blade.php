@@ -146,7 +146,7 @@
     <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
     <!-- Main JS -->
-    <script src="{{ asset('js/prev-image.js') }}"></script>
+    <script src="{{ asset('assets/js/prev-image.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @auth
         @if (auth()->user()->level == 'admin')

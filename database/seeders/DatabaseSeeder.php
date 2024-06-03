@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdminSeeder::class,
             WaliMuridSeeder::class,
-            NewsSeeder::class,
+            // NewsSeeder::class,
             PaymentSeeder::class,
             KelasSeeder::class
         ]);
