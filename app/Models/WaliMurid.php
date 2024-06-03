@@ -42,4 +42,9 @@ class WaliMurid extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
+    public function murid()
+    {
+        return $this->hasMany(Murid::class);
+    }
 }
