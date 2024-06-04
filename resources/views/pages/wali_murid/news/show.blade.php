@@ -31,19 +31,6 @@
                         <input type="date" class="form-control" value="{{ $news->date }}" disabled>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-10">
-                        <div class="form-check form-switch mb-3">
-                            <input class="form-check-input" type="radio" {{ old('status', $news->status) == 'published' ? 'checked' : '' }} disabled>
-                            <label class="form-check-label" for="published">Published</label>
-                        </div>
-                        <div class="form-check form-switch mb-3">
-                            <input class="form-check-input" type="radio" {{ old('status', $news->status) == 'draft' ? 'checked' : '' }} disabled>
-                            <label class="form-check-label" for="draft">Unpublished</label>
-                        </div>
-                    </div>
-                </div>
 
                 @php
                     $mediaUrls = [];

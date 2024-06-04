@@ -17,7 +17,8 @@
               <th></th>
               <th class="text-center">No</th>
               <th class="text-center">Nama</th>
-              <th class="text-center">Tanggal</th>
+              <th class="text-center">Tanggal Pembayaran</th>
+              <th class="text-center">Status</th>
               <th class="text-center">Aksi</th>
             </tr>
           </thead>
