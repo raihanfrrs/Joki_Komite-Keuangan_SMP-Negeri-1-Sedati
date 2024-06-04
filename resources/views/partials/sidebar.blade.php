@@ -50,12 +50,6 @@
           <div data-i18n="Kelas">Kelas</div>
         </a>
       </li>
-      <li class="menu-item {{ request()->is('admin/setting', 'admin/setting/*') ? 'active' : '' }}">
-        <a href="{{ route('admin.setting.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-settings"></i>
-          <div data-i18n="Pengaturan">Pengaturan</div>
-        </a>
-      </li>
       @elseif (auth()->user()->level == 'wali murid')
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Menu</span>
@@ -76,12 +70,6 @@
         <a href="{{ route('wali.murid.class.index') }}" class="menu-link">
           <i class="menu-icon tf-icons ti ti-door"></i>
           <div data-i18n="Kelas">Kelas</div>
-        </a>
-      </li>
-      <li class="menu-item {{ request()->is('wali-murid/setting', 'wali-murid/setting/*') ? 'active' : '' }}">
-        <a href="{{ route('wali.murid.setting.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons ti ti-settings"></i>
-          <div data-i18n="Pengaturan">Pengaturan</div>
         </a>
       </li>
       @endif

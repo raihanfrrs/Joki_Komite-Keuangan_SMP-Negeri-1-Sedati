@@ -1,1 +1,1 @@
-{{ $model->name }}
+<span class="text-capitalize">{{ $model->name }}</span>

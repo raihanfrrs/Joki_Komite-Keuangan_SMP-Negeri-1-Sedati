@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Review Pembayaran - Admin
+    Rincian Pembayaran - Admin
 @endsection
 
 @section('section-content')
@@ -10,47 +10,59 @@
         <div class="col-xxl">
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Review Pembayaran</h5>
+            <h5 class="mb-0">Rincian Pembayaran</h5>
             </div>
             <div class="card-body">
-            <form>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label fw-bold" for="basic-default-name">Nama</label>
+                    <label class="col-sm-2 col-form-label">Nama Lengkap</label>
                     <div class="col-sm-10">
-                        {{ $payment->name }}
+                        <input type="text" class="form-control" value="{{ $payment->name }}" disabled>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label fw-bold" for="basic-default-company">Keperluan</label>
+                    <label class="col-sm-2 col-form-label">Keperluan</label>
                     <div class="col-sm-10">
-                        {{ $payment->necessity  }}
+                        <input type="text" class="form-control" value="{{ $payment->necessity }}" disabled>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label fw-bold" for="basic-default-phone">Tanggal</label>
+                    <label class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-10">
-                        {{ $payment->date }}
+                        <input type="date" class="form-control" value="{{ $payment->date }}" disabled>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label fw-bold" for="basic-default-phone">Nominal</label>
+                    <label class="col-sm-2 col-form-label">Nominal</label>
                     <div class="col-sm-10">
-                        @rupiah($payment->nominal)
+                        <input type="text" class="form-control" value="{{ $payment->nominal}}" disabled>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label fw-bold" for="basic-default-message">Bukti Pembayaran</label>
+                    <label class="col-sm-2 col-form-label">Bukti Pembayaran</label>
                     <div class="col-sm-10">
-                        <span class="text-primary">Bukti Pembayaran.jpg</span>
+                        @if ($payment->getMedia('payment_files'))
+                            <iframe src="{{ $payment->getFirstMediaUrl('payment_files') }}" frameborder="0" class="w-100 mt-2 responsive" style="height: 500px"></iframe>
+                        @endif
                     </div>
                 </div>
                 <div class="row mt-3">
-                <div class="d-flex justify-content-center col-sm-12">
-                    <button type="submit" class="btn btn-primary waves-effect waves-light rounded me-4">Setujui</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light rounded">Tolak</button>
+                    <div class="d-flex justify-content-center col-sm-12">
+                        @if ($payment->status == 'pending' || $payment->status == 'decline')
+                        <form action="{{ route('admin.payment.update.status', ['payment' => $payment->id, 'type' => 'approve']) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-success waves-effect waves-light rounded me-4">Approve</button>
+                        </form>    
+                        @endif
+                        @if ($payment->status == 'pending' || $payment->status == 'approve')
+                        <form action="{{ route('admin.payment.update.status', ['payment' => $payment->id, 'type' => 'decline']) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-danger waves-effect waves-light rounded">Decline</button>
+                        </form>
+                        @endif
+                    </div>
                 </div>
-                </div>
-            </form>
             </div>
         </div>
         </div>

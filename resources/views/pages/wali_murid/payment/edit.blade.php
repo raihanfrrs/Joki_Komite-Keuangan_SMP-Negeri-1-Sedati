@@ -63,7 +63,18 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="payment_files">Bukti Pembayaran</label>
                     <div class="col-sm-10">
-                        <input type="file" name="payment_files" id="payment_files" class="form-control" >
+                        <input type="file" name="payment_files" id="payment_files" class="form-control" onchange="previewFilePayment()">
+                    </div>
+                </div>
+                <div class="row mb-3 d-none" id="div-file-preview">
+                    <label class="col-sm-2 col-form-label" for="news_files">Bukti Pembayaran Baru</label>
+                    <div class="col-sm-10">
+                        <div id="file-preview-container"></div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="payment_files">Bukti Pembayaran Saat ini <span class="text-danger"><sup>*Akan Ditimpa Jika Ada Perubahan</sup></span></label>
+                    <div class="col-sm-10">
                         @if ($payment->getMedia('payment_files'))
                             <input type="hidden" name="old_media_uuid[]" value="{{ $payment->getMedia('payment_files')[0]->uuid }}">
                             <iframe src="{{ $payment->getFirstMediaUrl('payment_files') }}" frameborder="0" class="w-100 mt-2 responsive" style="height: 500px"></iframe>
@@ -73,7 +84,7 @@
                 <div class="row mt-3">
                 <div class="d-flex justify-content-center col-sm-12">
                     <button type="submit" class="btn btn-primary waves-effect waves-light rounded me-4">Kirim</button>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light rounded">Batal</button>
+                    <button type="reset" class="btn btn-primary waves-effect waves-light rounded">Batal</button>
                 </div>
                 </div>
             </form>

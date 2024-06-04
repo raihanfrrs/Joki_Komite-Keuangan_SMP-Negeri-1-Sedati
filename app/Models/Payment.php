@@ -21,7 +21,8 @@ class Payment extends Model implements HasMedia
         'name',
         'necessity',
         'date',
-        'nominal'
+        'nominal',
+        'status'
     ];
 
     public function registerMediaCollections(): void

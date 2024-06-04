@@ -14,6 +14,11 @@ class PaymentRepository
         return Payment::all();
     }
 
+    public function getAllPaymentsByWaliMurid()
+    {
+        return Payment::where('wali_murid_id', auth()->user()->wali_murid->id)->get();
+    }
+
     public function getPayment($id)
     {
         return Payment::find($id);
@@ -78,5 +83,13 @@ class PaymentRepository
     public function deletePayment($payment)
     {
         return $payment->media()->delete() && $payment->delete();
+    }
+
+    public function updateStatusPayment($payment, $type)
+    {
+        return $payment->update([
+            'admin_id' => auth()->user()->admin->id,
+            'status' => $type
+        ]);
     }
 }

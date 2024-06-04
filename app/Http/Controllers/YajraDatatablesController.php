@@ -54,10 +54,13 @@ class YajraDatatablesController extends Controller
         ->addColumn('date', function ($model) {
             return view('components.data-ajax.yajra-column.data-admin-payment.date-column', compact('model'))->render();
         })
+        ->addColumn('status', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-payment.status-column', compact('model'))->render();
+        })
         ->addColumn('action', function ($model) {
             return view('components.data-ajax.yajra-column.data-admin-payment.action-column', compact('model'))->render();
         })
-        ->rawColumns(['index', 'name', 'date', 'action'])
+        ->rawColumns(['index', 'name', 'date', 'status', 'action'])
         ->make(true);
     }
 
@@ -96,7 +99,7 @@ class YajraDatatablesController extends Controller
     
     public function wali_murid_payment()
     {
-        $payments = $this->payment->getAllPayments();
+        $payments = $this->payment->getAllPaymentsByWaliMurid();
 
         return DataTables::of($payments)
         ->addColumn('index', function ($model) use ($payments) {

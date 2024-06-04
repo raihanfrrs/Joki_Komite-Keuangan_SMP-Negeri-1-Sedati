@@ -21,6 +21,7 @@ Route::group(['middleware' => ['cekUserLogin:admin']], function(){
     Route::controller(AdminPaymentController::class)->group(function () {
         Route::get('admin/payment', 'admin_payment_index')->name('admin.payment.index');
         Route::get('admin/payment/{payment}', 'admin_payment_show')->name('admin.payment.show');
+        Route::patch('admin/payment/{payment}/{type}', 'admin_payment_update_status')->name('admin.payment.update.status');
     });
 
     Route::controller(AdminClassController::class)->group(function () {
