@@ -11,33 +11,40 @@
         <!-- Account -->
         <div class="card-body">
           <div class="d-flex align-items-start align-items-sm-center gap-4">
-            <img src="../../assets/img/avatars/14.png" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+            <img src="{{ auth()->user()->admin->getFirstMediaUrl('admin_images') ? auth()->user()->admin->getFirstMediaUrl('admin_images') : asset('assets/img/avatars/14.png') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded img-preview" id="uploadedAvatar">
             <div class="button-wrapper">
-              <label for="upload" class="btn btn-primary me-2 mb-3 waves-effect waves-light" tabindex="0">
+              <label for="settingImage" class="btn btn-primary me-2 mb-3 waves-effect waves-light" tabindex="0">
                 <span class="d-none d-sm-block">Unggah Foto Baru</span>
                 <i class="ti ti-upload d-block d-sm-none"></i>
-                <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
               </label>
-              <button type="button" class="btn btn-label-secondary account-image-reset mb-3 waves-effect">
-                <i class="ti ti-refresh-dot d-block d-sm-none"></i>
-                <span class="d-none d-sm-block">Ulangi</span>
-              </button>
             </div>
           </div>
+          @error('admin_images')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
         <hr class="my-0">
         <div class="card-body">
-          <form id="formAccountSettings" method="POST" onsubmit="return false" class="fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+          <form action="{{ route('admin.setting.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PATCH')
+            <input type="file" id="settingImage" name="admin_images" class="account-file-input" hidden="" accept="image/png, image/jpeg" onchange="previewImage()">
+            <input type="hidden" name="old_media_uuid" value="{{ auth()->user()->admin->getMedia('admin_images')[0]->uuid ?? '' }}">
             <div class="row">
                 <div class="mb-3 col-md-6 fv-plugins-icon-container">
-                    <label for="firstName" class="form-label">Nama Lengkap</label>
-                    <input class="form-control" type="text" id="firstName" name="firstName" value="{{ auth()->user()->admin->name }}" autofocus="" placeholder="Nama Lengkap">
-                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                    <label for="name" class="form-label">Nama Lengkap</label>
+                    <input class="form-control @error('name') is-invalid @enderror" type="text" id="name" name="name" value="{{ old('name', auth()->user()->admin->name) }}" placeholder="Nama Lengkap" required>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3 col-md-6">
                     <label for="email" class="form-label">Alamat Surel</label>
-                    <input class="form-control" type="email" id="email" name="email" value="{{ auth()->user()->admin->email }}" placeholder="y6DpX@gmail.com">
+                    <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email', auth()->user()->admin->email) }}" placeholder="y6DpX@gmail.com" required>
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3 col-md-6">
@@ -46,17 +53,20 @@
                 </div>
 
                 <div class="mb-3 col-md-6">
-                    <label class="form-label" for="phoneNumber">Nomor Ponsel</label>
+                    <label class="form-label" for="phone">Nomor Ponsel</label>
                     <div class="input-group input-group-merge">
-                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="0823-XXXX-XXXX">
+                        <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', auth()->user()->admin->phone) }}" required>
                     </div>
+                    @error('phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="mt-2 d-flex justify-content-center">
               <button type="submit" class="btn btn-primary me-2 waves-effect waves-light">Ubah</button>
               <button type="reset" class="btn btn-label-secondary waves-effect">Batal</button>
             </div>
-          <input type="hidden"></form>
+          </form>
         </div>
         <!-- /Account -->
     </div>

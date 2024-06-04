@@ -44,4 +44,9 @@ class Admin extends Model implements HasMedia
     {
         return $this->hasMany(News::class);
     }
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class);
+    }
 }

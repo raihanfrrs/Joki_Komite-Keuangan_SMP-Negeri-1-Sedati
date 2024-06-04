@@ -19,9 +19,9 @@ class WaliMurid extends Model implements HasMedia
     protected $fillable = [
         'id',
         'user_id',
+        'kelas_id',
         'email',
-        'phone',
-        'kelas'
+        'phone'
     ];
 
     public function registerMediaCollections(): void
@@ -46,5 +46,10 @@ class WaliMurid extends Model implements HasMedia
     public function murid()
     {
         return $this->hasMany(Murid::class);
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
     }
 }

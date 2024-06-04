@@ -31,5 +31,6 @@ Route::group(['middleware' => ['cekUserLogin:admin']], function(){
 
     Route::controller(AdminSettingsController::class)->group(function () {
         Route::get('admin/setting', 'admin_setting_index')->name('admin.setting.index');
+        Route::patch('admin/setting', 'admin_setting_update')->name('admin.setting.update');
     });
 });

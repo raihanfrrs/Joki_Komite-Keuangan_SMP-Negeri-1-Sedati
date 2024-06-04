@@ -15,6 +15,7 @@ class Murid extends Model
     protected $fillable = [
         'id',
         'wali_murid_id',
+        'kelas_id',
         'name',
         'wali_murid'
     ];
@@ -22,5 +23,10 @@ class Murid extends Model
     public function wali_murid()
     {
         return $this->belongsTo(WaliMurid::class);
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
     }
 }

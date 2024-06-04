@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('murids', function (Blueprint $table) {
             $table->foreign(['wali_murid_id'], 'murids_ibfk_1')->references(['id'])->on('wali_murids')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['kelas_id'], 'murids_ibfk_2')->references(['id'])->on('kelas')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('murids', function (Blueprint $table) {
             $table->dropForeign('murids_ibfk_1');
+            $table->dropForeign('murids_ibfk_2');
         });
     }
 };
