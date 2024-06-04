@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('necessity');
             $table->date('date');
             $table->bigInteger('nominal');
-            $table->enum('status', ['approve', 'decline'])->default('approve');
+            $table->enum('status', ['pending', 'approve', 'decline'])->default('pending');
             $table->timestamps();
         });
     }

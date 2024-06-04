@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             WaliMuridSeeder::class,
             // NewsSeeder::class,
-            PaymentSeeder::class,
+            // PaymentSeeder::class,
             KelasSeeder::class
         ]);
     }
