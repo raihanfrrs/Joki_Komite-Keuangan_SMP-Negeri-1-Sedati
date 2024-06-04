@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kelas;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,10 +16,10 @@ return new class extends Migration
         Schema::create('wali_murids', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Kelas::class);
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('kelas');
             $table->softDeletes();
             $table->timestamps();
         });

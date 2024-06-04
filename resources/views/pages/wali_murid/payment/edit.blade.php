@@ -76,7 +76,7 @@
                     <label class="col-sm-2 col-form-label" for="payment_files">Bukti Pembayaran Saat ini <span class="text-danger"><sup>*Akan Ditimpa Jika Ada Perubahan</sup></span></label>
                     <div class="col-sm-10">
                         @if ($payment->getMedia('payment_files'))
-                            <input type="hidden" name="old_media_uuid[]" value="{{ $payment->getMedia('payment_files')[0]->uuid }}">
+                            <input type="hidden" name="old_media_uuid" value="{{ $payment->getMedia('payment_files')[0]->uuid }}">
                             <iframe src="{{ $payment->getFirstMediaUrl('payment_files') }}" frameborder="0" class="w-100 mt-2 responsive" style="height: 500px"></iframe>
                         @endif
                     </div>

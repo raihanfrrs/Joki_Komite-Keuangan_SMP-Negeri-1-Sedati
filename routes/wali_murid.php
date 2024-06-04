@@ -30,5 +30,6 @@ Route::group(['middleware' => ['cekUserLogin:wali murid']], function(){
 
     Route::controller(WaliMuridSettingsController::class)->group(function () {
         Route::get('wali-murid/setting', 'wali_murid_setting_index')->name('wali.murid.setting.index');
+        Route::patch('wali-murid/setting', 'wali_murid_setting_update')->name('wali.murid.setting.update');
     });
 });
