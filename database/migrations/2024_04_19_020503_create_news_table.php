@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignIdFor(Admin::class);
             $table->string('title');
+            $table->string('slug');
             $table->date('date');
             $table->longText('description')->nullable();
             $table->enum('status', ['published', 'draft'])->default('draft');
