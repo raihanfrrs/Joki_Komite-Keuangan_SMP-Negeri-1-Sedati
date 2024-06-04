@@ -40,7 +40,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="date">Tanggal Terbit</label>
                     <div class="col-sm-10">
-                        <input type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date') }}" required>
+                        <input type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date', date('Y-m-d')) }}" required>
                         @error('date')
                             <div class="invalid-feedback">
                                 {{ $message }}
