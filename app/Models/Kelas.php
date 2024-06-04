@@ -16,4 +16,19 @@ class Kelas extends Model
         'admin_id',
         'name'
     ];
+    
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function wali_murid()
+    {
+        return $this->hasOne(WaliMurid::class);
+    }
+
+    public function murid()
+    {
+        return $this->hasMany(Murid::class);
+    }
 }

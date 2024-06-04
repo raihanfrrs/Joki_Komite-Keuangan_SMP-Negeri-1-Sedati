@@ -399,8 +399,8 @@
                                 {!! generateAvatar(auth()->user()->admin->name) !!}
                             @endif
                         @else
-                            @if (auth()->user()->wali_murid->getFirstMediaUrl('cashier_images'))
-                                <img src="{{ auth()->user()->wali_murid->getFirstMediaUrl('cashier_images') }}" alt="{{ auth()->user()->level }}" class="h-auto rounded-circle">
+                            @if (auth()->user()->wali_murid->getFirstMediaUrl('wali_murid_images'))
+                                <img src="{{ auth()->user()->wali_murid->getFirstMediaUrl('wali_murid_images') }}" alt="{{ auth()->user()->level }}" class="h-auto rounded-circle">
                             @else
                                 {!! generateAvatar(auth()->user()->wali_murid->name) !!}
                             @endif
