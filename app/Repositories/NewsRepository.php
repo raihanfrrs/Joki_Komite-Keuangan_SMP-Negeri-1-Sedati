@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Carbon\Carbon;
 use App\Models\News;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -35,6 +36,7 @@ class NewsRepository
                 'id' => Uuid::uuid4()->toString(),
                 'admin_id' => auth()->user()->admin->id,
                 'title' => $data['title'],
+                'slug' => Str::slug($data['title']),
                 'date' => $data['date'],
                 'description' => $data['description'],
                 'status' => $requestDate == $today ? 'published' : 'draft'
@@ -65,6 +67,7 @@ class NewsRepository
 
             $news->update([
                 'title' => $data['title'],
+                'slug' => Str::slug($data['title']),
                 'date' => $data['date'],
                 'description' => $data['description'],
                 'status' => $requestDate == $today && $news->status == 'published' ? 'published' : 'draft'

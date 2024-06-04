@@ -10,6 +10,8 @@ Route::group(['middleware' => ['cekUserLogin:wali murid']], function(){
 
     Route::controller(WaliMuridNewsController::class)->group(function () {
         Route::get('wali-murid/news', 'wali_murid_news_index')->name('wali.murid.news.index');
+        Route::get('wali-murid/news/{news}', 'wali_murid_news_show')->name('wali.murid.news.show');
+        Route::get('wali-murid/news/{news}/download', 'wali_murid_news_download')->name('wali.murid.news.download');
     });
 
     Route::controller(WaliMuridPaymentController::class)->group(function () {
