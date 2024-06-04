@@ -418,6 +418,15 @@
                 <div class="dropdown-divider"></div>
             </li>
             <li>
+                <a class="dropdown-item" href="{{ auth()->user()->level == 'admin' ? route('admin.setting.index') : route('wali.murid.setting.index') }}">
+                <i class="ti ti-settings me-2 ti-sm"></i>
+                <span class="align-middle">Pengaturan</span>
+                </a>
+            </li>
+            <li>
+                <div class="dropdown-divider"></div>
+            </li>
+            <li>
                 <a class="dropdown-item" href="{{ route('logout') }}">
                 <i class="ti ti-logout me-2 ti-sm"></i>
                 <span class="align-middle">Keluar</span>

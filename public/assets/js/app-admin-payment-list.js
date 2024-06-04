@@ -28,6 +28,7 @@ $(function () {
         { data: 'index', class: 'text-center' },
         { data: 'name', class: 'text-center' },
         { data: 'date', class: 'text-center' },
+        { data: 'status', class: 'text-center' },
         { data: 'action' }
       ],
       columnDefs: [
@@ -60,6 +61,13 @@ $(function () {
           responsivePriority: 4,
           render: function (data, type, full, meta) {
             return full.date;
+          }
+        },
+        {
+          targets: 4,
+          responsivePriority: 4,
+          render: function (data, type, full, meta) {
+            return full.status;
           }
         },
         {
@@ -98,7 +106,7 @@ $(function () {
               text: '<i class="ti ti-printer me-2" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3],
+                columns: [1, 2, 3, 4],
               },
               customize: function (win) {
                 $(win.document.body)
@@ -118,7 +126,7 @@ $(function () {
               text: '<i class="ti ti-file-text me-2" ></i>Csv',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -126,7 +134,7 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -134,7 +142,7 @@ $(function () {
               text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -142,7 +150,7 @@ $(function () {
               text: '<i class="ti ti-copy me-2" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3],
+                columns: [1, 2, 3, 4],
               }
             }
           ]
