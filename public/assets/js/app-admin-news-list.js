@@ -196,9 +196,9 @@ $(function () {
   })
 
   // Delete Record
-  $(document).on('click', '#button-delete-cashier', function () {
+  $(document).on('click', '#button-delete-admin-news', function () {
     let id = $(this).attr('data-id');
-    let formSelector = ".form-delete-cashier-" + id;
+    let formSelector = ".form-delete-admin-news-" + id;
 
     Swal.fire({
       title: 'Apa anda yakin?',

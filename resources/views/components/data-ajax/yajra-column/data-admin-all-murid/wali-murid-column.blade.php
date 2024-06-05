@@ -1,0 +1,1 @@
+{{ $model->wali_murid }}

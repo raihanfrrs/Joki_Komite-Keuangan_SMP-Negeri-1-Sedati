@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use App\Repositories\NewsRepository;
 use App\Repositories\ClassRepository;
@@ -83,7 +84,7 @@ class YajraDatatablesController extends Controller
 
     public function wali_murid_news()
     {
-        $news = $this->news->getAllNews();
+        $news = $this->news->getAllNewsWithPulishedStatus();
 
         return DataTables::of($news)
         ->addColumn('title', function ($model) {
@@ -142,6 +143,27 @@ class YajraDatatablesController extends Controller
         })
         ->addColumn('action', function ($model) {
             return view('components.data-ajax.yajra-column.data-wali-murid-all-murid.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'murid', 'wali_murid', 'action'])
+        ->make(true);
+    }
+
+    public function admin_all_murid(Kelas $class)
+    {
+        $murids = $this->murid->getAllMuridByClass($class);
+
+        return DataTables::of($murids)
+        ->addColumn('index', function ($model) use ($murids) {
+            return $murids->search($model) + 1;
+        })
+        ->addColumn('murid', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-murid.murid-column', compact('model'))->render();
+        })
+        ->addColumn('wali_murid', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-murid.wali-murid-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-murid.action-column', compact('model'))->render();
         })
         ->rawColumns(['index', 'murid', 'wali_murid', 'action'])
         ->make(true);
