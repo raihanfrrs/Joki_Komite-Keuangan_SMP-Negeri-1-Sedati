@@ -17,6 +17,11 @@ class MuridRepository
         return Murid::where('wali_murid_id', auth()->user()->wali_murid->id)->get();
     }
 
+    public function getAllMuridByClass($class)
+    {
+        return Murid::where('kelas_id', $class->id)->get();
+    }
+
     public function updateMurid($data, $murid)
     {
         DB::transaction(function () use ($data, $murid) {
