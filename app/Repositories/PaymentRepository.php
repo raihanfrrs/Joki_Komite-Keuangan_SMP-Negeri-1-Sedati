@@ -24,6 +24,14 @@ class PaymentRepository
         return Payment::find($id);
     }
 
+    public function getAllPaymentsByApproveStatus(){
+        return Payment::where('status', 'approve')->get();
+    }
+
+    public function getTotalPaymentThisMonth(){
+        return Payment::whereMonth('created_at', date('m'))->get();
+    }
+
     public function storePayment($data)
     {
         DB::transaction(function () use ($data) {

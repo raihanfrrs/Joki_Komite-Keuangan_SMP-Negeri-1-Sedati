@@ -66,34 +66,5 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-xxl">
-        <div class="card mb-4">
-            <div class="card-header d-flex align-items-center justify-content-center">
-            <h5 class="mb-0 d-flex justify-content-center">Berita</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive text-nowrap">
-                    <table class="table">
-                      <tbody>
-                        @foreach ($news as $new)
-                        <tr>
-                            <th scope="row" class="text-center">{{ $loop->iteration }}</th>
-                            <td class="text-center">{{ $new->title }}</td>
-                            <td class="text-center">{{ $new->date }}</td>
-                            <td class="text-center"><span class="text-primary">Download File</span></td>
-                        </tr>
-                        @endforeach
-                        <tr class="text-center">
-                            <td colspan="4"><a href="{{ route('wali.murid.news.index') }}">Lihat Lebih Banyak</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-            </div>
-        </div>
-        </div>
-    </div>
 </div>
 @endsection
