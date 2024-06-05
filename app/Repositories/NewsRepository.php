@@ -21,6 +21,11 @@ class NewsRepository
         return News::limit($limit)->get();
     }
 
+    public function getAllNewsWithPulishedStatus()
+    {
+        return News::where('status', 'published')->get();
+    }
+
     public function getNew($id)
     {
         return News::find($id);
@@ -99,5 +104,10 @@ class NewsRepository
     public function deleteNews($news)
     {
         return $news->media()->delete() && $news->delete();
+    }
+
+    public function updateStatusAllNews()
+    {
+        return News::whereDate('date', Carbon::today())->update(['status' => 'published']);
     }
 }

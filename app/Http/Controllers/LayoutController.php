@@ -17,6 +17,10 @@ class LayoutController extends Controller
 
     public function index()
     {
+        if (Auth::check()) {
+            $this->news->updateStatusAllNews();
+        }
+
         if (Auth::check() && auth()->user()->level == 'admin') {
             return view('pages.admin.dashboard.index', [
                 'news' => $this->news->getAllNewsByLimit(4)

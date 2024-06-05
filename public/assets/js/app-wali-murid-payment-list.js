@@ -212,9 +212,9 @@ $(function () {
   })
 
   // Delete Record
-  $(document).on('click', '#button-delete-cashier', function () {
+  $(document).on('click', '#button-delete-wali-murid-payment', function () {
     let id = $(this).attr('data-id');
-    let formSelector = ".form-delete-cashier-" + id;
+    let formSelector = ".form-delete-wali-murid-payment-" + id;
 
     Swal.fire({
       title: 'Apa anda yakin?',

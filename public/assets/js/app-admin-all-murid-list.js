@@ -18,17 +18,17 @@ $(function () {
     headingColor = config.colors.headingColor;
   }
 
-  var dt_brand_table = $('#listWaliMuridAllMuridTable');
+  var dt_brand_table = $('#listAdminAllMuridTable');
+  var class_id = dt_brand_table.attr('data-id');
 
   if (dt_brand_table.length) {
     var dt_user = dt_brand_table.DataTable({
-      ajax: "/listWaliMuridAllMuridTable",
+      ajax: "/listAdminAllMuridTable/" + class_id,
       columns: [
         { data: '' },
         { data: 'index', class: 'text-center' },
         { data: 'murid', class: 'text-center' },
-        { data: 'wali_murid', class: 'text-center' },
-        { data: 'action' }
+        { data: 'wali_murid', class: 'text-center' }
       ],
       columnDefs: [
         {
@@ -60,15 +60,6 @@ $(function () {
           responsivePriority: 4,
           render: function (data, type, full, meta) {
             return full.wali_murid;
-          }
-        },
-        {
-          targets: -1,
-          title: 'Aksi',
-          searchable: false,
-          orderable: false,
-          render: function (data, type, full, meta) {
-              return full.action;
           }
         },
       ],
@@ -147,21 +138,6 @@ $(function () {
             }
           ]
         },
-        {
-          text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Export Template</span>',
-          className: 'add-new btn btn-primary me-3',
-          attr: {
-            'id': 'button-export-template', 
-          }
-        },
-        {
-          text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Import Murid</span>',
-          className: 'add-new btn btn-info',
-          attr: {
-            'data-bs-target': '#importMuridModal', 
-            'data-bs-toggle': 'modal'
-          }
-        },
       ],
       // For responsive popup
       responsive: {
@@ -199,14 +175,10 @@ $(function () {
     });
   }
 
-  $(document).on('click', '#button-export-template', function () {
-    location.href = '/wali-murid/class/export-template';
-  });
-
   // Delete Record
-  $(document).on('click', '#button-delete-wali-murid-all-murid', function () {
+  $(document).on('click', '#button-delete-cashier', function () {
     let id = $(this).attr('data-id');
-    let formSelector = ".form-delete-wali-murid-all-murid-" + id;
+    let formSelector = ".form-delete-cashier-" + id;
 
     Swal.fire({
       title: 'Apa anda yakin?',
