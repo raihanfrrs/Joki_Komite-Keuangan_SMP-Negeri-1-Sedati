@@ -64,7 +64,7 @@
             </div>
             <div class="mt-2 d-flex justify-content-center">
               <button type="submit" class="btn btn-primary me-2 waves-effect waves-light">Ubah</button>
-              <button type="reset" class="btn btn-label-secondary waves-effect">Batal</button>
+              <button type="reset" class="btn btn-label-danger waves-effect">Batal</button>
             </div>
           </form>
         </div>

@@ -169,6 +169,8 @@
                 <script src="{{ asset('assets/js/app-wali-murid-news-list.js') }}"></script>
             @elseif (request()->is('wali-murid/payment'))
                 <script src="{{ asset('assets/js/app-wali-murid-payment-list.js') }}"></script>
+            @elseif (request()->is('wali-murid/class'))
+                <script src="{{ asset('assets/js/app-wali-murid-all-murid-list.js') }}"></script>
             @endif
         @endif
     @else

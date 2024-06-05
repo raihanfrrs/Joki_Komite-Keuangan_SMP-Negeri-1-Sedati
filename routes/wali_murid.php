@@ -26,6 +26,11 @@ Route::group(['middleware' => ['cekUserLogin:wali murid']], function(){
 
     Route::controller(WaliMuridClassController::class)->group(function () {
         Route::get('wali-murid/class', 'wali_murid_class_index')->name('wali.murid.class.index');
+        Route::get('wali-murid/class/export-template', 'wali_murid_export_template')->name('wali.murid.export.template');
+        Route::post('wali-murid/class/import-murid', 'wali_murid_import_murid')->name('wali.murid.import.murid');
+        Route::get('wali-murid/class/{murid}/edit', 'wali_murid_class_edit')->name('wali.murid.class.edit');
+        Route::patch('wali-murid/class/{murid}', 'wali_murid_class_update')->name('wali.murid.class.update');
+        Route::delete('wali-murid/class/{murid}', 'wali_murid_class_destroy')->name('wali.murid.class.destroy');
     });
 
     Route::controller(WaliMuridSettingsController::class)->group(function () {
