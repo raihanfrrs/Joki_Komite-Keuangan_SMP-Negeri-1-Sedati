@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ClassRepository;
 use Illuminate\Http\Request;
 use App\Repositories\NewsRepository;
+use App\Repositories\ClassRepository;
+use App\Repositories\MuridRepository;
 use App\Repositories\PaymentRepository;
 use Yajra\DataTables\Facades\DataTables;
 
 class YajraDatatablesController extends Controller
 {
-    protected $news, $payment, $class;
+    protected $news, $payment, $class, $murid;
 
-    public function __construct(NewsRepository $newsRepository, PaymentRepository $paymentRepository, ClassRepository $classRepository)
+    public function __construct(NewsRepository $newsRepository, PaymentRepository $paymentRepository, ClassRepository $classRepository, MuridRepository $muridRepository)
     {
         $this->news = $newsRepository;
         $this->payment = $paymentRepository;
         $this->class = $classRepository;
+        $this->murid = $muridRepository;
     }
 
     public function admin_news()
@@ -121,6 +123,27 @@ class YajraDatatablesController extends Controller
             return view('components.data-ajax.yajra-column.data-wali-murid-payment.action-column', compact('model'))->render();
         })
         ->rawColumns(['index', 'necessity', 'date', 'nominal', 'status', 'action'])
+        ->make(true);
+    }
+
+    public function wali_murid_all_murid()
+    {
+        $murids = $this->murid->getAllMuridByWaliMurid();
+
+        return DataTables::of($murids)
+        ->addColumn('index', function ($model) use ($murids) {
+            return $murids->search($model) + 1;
+        })
+        ->addColumn('murid', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-all-murid.murid-column', compact('model'))->render();
+        })
+        ->addColumn('wali_murid', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-all-murid.wali-murid-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-wali-murid-all-murid.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'murid', 'wali_murid', 'action'])
         ->make(true);
     }
 }

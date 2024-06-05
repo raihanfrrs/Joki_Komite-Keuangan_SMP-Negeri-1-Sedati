@@ -70,7 +70,7 @@
                     <div class="row mt-3">
                         <div class="d-flex justify-content-center col-sm-12">
                             <button type="submit" class="btn btn-primary waves-effect waves-light rounded me-4">Kirim</button>
-                            <button type="reset" class="btn btn-primary waves-effect waves-light rounded">Batal</button>
+                            <button type="reset" class="btn btn-danger waves-effect waves-light rounded">Batal</button>
                         </div>
                     </div>
                 </form>
