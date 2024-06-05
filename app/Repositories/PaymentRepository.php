@@ -28,8 +28,10 @@ class PaymentRepository
         return Payment::where('status', 'approve')->get();
     }
 
-    public function getTotalPaymentThisMonth(){
-        return Payment::whereMonth('created_at', date('m'))->get();
+    public function getTotalPaymentThisMonth($status){
+        return Payment::whereMonth('created_at', date('m'))
+                        ->where('status', $status)
+                        ->get();
     }
 
     public function storePayment($data)

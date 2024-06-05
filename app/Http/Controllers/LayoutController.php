@@ -31,14 +31,18 @@ class LayoutController extends Controller
             return view('pages.admin.dashboard.index', [
                 'news' => $this->news->getAllNewsByLimit(4),
                 'payment' => $this->payment->getAllPaymentsByApproveStatus(),
-                'totalPaymentThisMonth' => $this->payment->getTotalPaymentThisMonth(),
+                'totalPaymentThisMonth' => $this->payment->getTotalPaymentThisMonth('approve'),
                 'totalNewsThisMonth' => $this->news->getTotalNewsThisMonth(),
                 'totalClass' => $this->class->getAllClasses()->count(),
                 'totalStudent' => $this->murid->getAllMurid()->count(),
             ]);
         } elseif (Auth::check() && auth()->user()->level == 'wali murid') {
             return view('pages.wali_murid.dashboard.index', [
-                'news' => $this->news->getAllNewsByLimit(4)
+                'payment' => $this->payment->getAllPaymentsByApproveStatus()->where('wali_murid_id', auth()->user()->wali_murid->id),
+                'totalPaymentThisMonth' => $this->payment->getTotalPaymentThisMonth('approve')->where('wali_murid_id', auth()->user()->wali_murid->id),
+                'totalPaymentApprovedThisMonth' => $this->payment->getTotalPaymentThisMonth('approve')->where('wali_murid_id', auth()->user()->wali_murid->id)->count(),
+                'totalPaymentDeclinedThisMonth' => $this->payment->getTotalPaymentThisMonth('decline')->where('wali_murid_id', auth()->user()->wali_murid->id)->count(),
+                'totalStudent' => $this->murid->getAllMuridByWaliMurid()->count(),
             ]);
         } else {
             return redirect()->route('login.wali.murid');
