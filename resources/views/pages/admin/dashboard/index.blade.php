@@ -13,7 +13,7 @@
             <div class="col-7">
               <div class="card-body text-nowrap">
                 <h5 class="card-title mb-0 text-capitalize">Selamat Datang Kembali, {{ auth()->user()->level }}! 🎉</h5>
-                <p class="mb-2">Total Seluruh Pembayaran Masuk</p>
+                <p class="mb-y">Total Seluruh Pembayaran Masuk</p>
                 <h4 class="text-primary mb-1">@rupiah($payment->sum('nominal'))</h4>
                 <a href="{{ route('admin.payment.index') }}" class="btn btn-primary waves-effect waves-light mt-4">Lihat Pembayaran</a>
               </div>
