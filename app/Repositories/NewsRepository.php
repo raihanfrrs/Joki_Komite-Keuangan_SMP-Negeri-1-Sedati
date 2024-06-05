@@ -31,6 +31,12 @@ class NewsRepository
         return News::find($id);
     }
 
+    public function getTotalNewsThisMonth(){
+        return News::where('status', 'published')
+                    ->whereMonth('created_at', date('m'))
+                    ->get();
+    }
+
     public function storeNews($data)
     {
         DB::transaction(function () use ($data) {
