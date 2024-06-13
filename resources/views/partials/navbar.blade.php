@@ -375,13 +375,13 @@
                     @if (auth()->user()->admin->getFirstMediaUrl('admin_images'))
                         <img src="{{ auth()->user()->admin->getFirstMediaUrl('admin_images') }}" alt="{{ auth()->user()->level }}" class="h-auto rounded-circle">    
                     @else
-                        {!! generateAvatar(auth()->user()->admin->name) !!}
+                        @generateAvatar(auth()->user()->admin->name)
                     @endif
                 @else
                     @if (auth()->user()->wali_murid->getFirstMediaUrl('wali_murid_images'))
                         <img src="{{ auth()->user()->wali_murid->getFirstMediaUrl('wali_murid_images') }}" alt="{{ auth()->user()->level }}" class="h-auto rounded-circle">
                     @else
-                        {!! generateAvatar(auth()->user()->wali_murid->name) !!}
+                        @generateAvatar(auth()->user()->wali_murid->name)
                     @endif
                 @endif
             </div>
@@ -396,13 +396,13 @@
                             @if (auth()->user()->admin->getFirstMediaUrl('admin_images'))
                                 <img src="{{ auth()->user()->admin->getFirstMediaUrl('admin_images') }}" alt="{{ auth()->user()->level }}" class="h-auto rounded-circle">    
                             @else
-                                {!! generateAvatar(auth()->user()->admin->name) !!}
+                                @generateAvatar(auth()->user()->admin->name)
                             @endif
                         @else
                             @if (auth()->user()->wali_murid->getFirstMediaUrl('wali_murid_images'))
                                 <img src="{{ auth()->user()->wali_murid->getFirstMediaUrl('wali_murid_images') }}" alt="{{ auth()->user()->level }}" class="h-auto rounded-circle">
                             @else
-                                {!! generateAvatar(auth()->user()->wali_murid->name) !!}
+                                @generateAvatar(auth()->user()->wali_murid->name)
                             @endif
                         @endif
                     </div>

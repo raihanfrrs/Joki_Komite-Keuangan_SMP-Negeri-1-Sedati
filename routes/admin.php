@@ -13,6 +13,9 @@ Route::group(['middleware' => ['cekUserLogin:admin']], function(){
         Route::get('admin/master-wali-murid', 'admin_master_wali_murid_index')->name('admin.master.wali-murid.index');
         Route::get('admin/master-wali-murid/export-template', 'admin_master_wali_murid_export_template');
         Route::post('admin/master-wali-murid/import-wali-murid', 'admin_master_wali_murid_import_wali_murid')->name('admin.master.wali-murid.import-wali-murid');
+        Route::get('admin/master-wali-murid/{wali_murid}/edit', 'admin_master_wali_murid_edit')->name('admin.master.wali-murid.edit');
+        Route::patch('admin/master-wali-murid/{wali_murid}', 'admin_master_wali_murid_update')->name('admin.master.wali-murid.update');
+        Route::delete('admin/master-wali-murid/{wali_murid}', 'admin_master_wali_murid_destroy')->name('admin.master.wali-murid.destroy');
     });
 
     Route::controller(AdminNewsController::class)->group(function () {
