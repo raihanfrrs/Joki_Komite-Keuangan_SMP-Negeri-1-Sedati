@@ -236,9 +236,9 @@ $(function () {
   });
 
   // Delete Record
-  $(document).on('click', '#button-delete-wali-murid-all-murid', function () {
+  $(document).on('click', '#button-delete-admin-wali-murid', function () {
     let id = $(this).attr('data-id');
-    let formSelector = ".form-delete-wali-murid-all-murid-" + id;
+    let formSelector = ".form-delete-admin-wali-murid-" + id;
 
     Swal.fire({
       title: 'Apa anda yakin?',

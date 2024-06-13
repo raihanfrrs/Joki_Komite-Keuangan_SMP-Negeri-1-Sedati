@@ -198,7 +198,7 @@ class YajraDatatablesController extends Controller
             return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.registered-at-column', compact('model'))->render();
         })
         ->addColumn('action', function ($model) {
-            return view('components.data-ajax.yajra-column.data-admin-all-murid.action-column', compact('model'))->render();
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.action-column', compact('model'))->render();
         })
         ->rawColumns(['index', 'username', 'kelas', 'name', 'phone', 'email', 'created_at', 'action'])
         ->make(true);
