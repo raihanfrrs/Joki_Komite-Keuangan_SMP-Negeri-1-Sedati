@@ -21,12 +21,12 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('admin123'),
                 'level' => 'admin'
             ],
-            [
-                'id'=> Uuid::uuid4()->toString(),
-                'username' => 'walimurid',
-                'password' => bcrypt('walimurid123'),
-                'level' => 'wali murid'
-            ]
+            // [
+            //     'id'=> Uuid::uuid4()->toString(),
+            //     'username' => 'walimurid',
+            //     'password' => bcrypt('walimurid123'),
+            //     'level' => 'wali murid'
+            // ],
         ];
 
         foreach ($users as $key => $user) {

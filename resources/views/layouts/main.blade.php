@@ -165,6 +165,8 @@
                 <script src="{{ asset('assets/js/app-admin-class-list.js') }}"></script>
             @elseif (request()->is('admin/class/*'))
                 <script src="{{ asset('assets/js/app-admin-all-murid-list.js') }}"></script>
+            @elseif (request()->is('admin/master-wali-murid'))
+                <script src="{{ asset('assets/js/app-admin-all-wali-murid-list.js') }}"></script>
             @endif
         @elseif (auth()->user()->level == 'wali murid')
             @if (request()->is('wali-murid/news'))

@@ -1,12 +1,19 @@
 <?php
 
 use App\Http\Controllers\AdminClassController;
+use App\Http\Controllers\AdminMasterController;
 use App\Http\Controllers\AdminNewsController;
 use App\Http\Controllers\AdminPaymentController;
 use App\Http\Controllers\AdminSettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['cekUserLogin:admin']], function(){
+
+    Route::controller(AdminMasterController::class)->group(function () {
+        Route::get('admin/master-wali-murid', 'admin_master_wali_murid_index')->name('admin.master.wali-murid.index');
+        Route::get('admin/master-wali-murid/export-template', 'admin_master_wali_murid_export_template');
+        Route::post('admin/master-wali-murid/import-wali-murid', 'admin_master_wali_murid_import_wali_murid')->name('admin.master.wali-murid.import-wali-murid');
+    });
 
     Route::controller(AdminNewsController::class)->group(function () {
         Route::get('admin/news', 'admin_news_index')->name('admin.news.index');

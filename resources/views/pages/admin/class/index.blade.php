@@ -15,7 +15,7 @@
           <thead>
             <tr>
               <th></th>
-              <th class="text-center">name</th>
+              <th class="text-center">Nama</th>
               <th class="text-center">Aksi</th>
             </tr>
           </thead>

@@ -26,7 +26,7 @@ class WaliMuridClassController extends Controller
 
     public function wali_murid_export_template()
     {
-        return Excel::download(new ExportTemplateExcel, 'template-wali-murid.xlsx');
+        return Excel::download(new ExportTemplateExcel('export-class'), 'template-class.xlsx');
     }
 
     public function wali_murid_import_murid(Request $request)
