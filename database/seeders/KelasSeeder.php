@@ -48,6 +48,26 @@ class KelasSeeder extends Seeder
                 'admin_id' => $admin->id,
                 'name' => '2.6'
             ],
+            [
+                'id' => Uuid::uuid4()->toString(),
+                'admin_id' => $admin->id,
+                'name' => '2.7'
+            ],
+            [
+                'id' => Uuid::uuid4()->toString(),
+                'admin_id' => $admin->id,
+                'name' => '2.8'
+            ],
+            [
+                'id' => Uuid::uuid4()->toString(),
+                'admin_id' => $admin->id,
+                'name' => '2.9'
+            ],
+            [
+                'id' => Uuid::uuid4()->toString(),
+                'admin_id' => $admin->id,
+                'name' => '2.10'
+            ]
         ];
 
         foreach ($class as $key => $kelas) {

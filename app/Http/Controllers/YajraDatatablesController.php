@@ -9,17 +9,19 @@ use App\Repositories\ClassRepository;
 use App\Repositories\MuridRepository;
 use App\Repositories\PaymentRepository;
 use Yajra\DataTables\Facades\DataTables;
+use App\Repositories\WaliMuridRepository;
 
 class YajraDatatablesController extends Controller
 {
-    protected $news, $payment, $class, $murid;
+    protected $news, $payment, $class, $murid, $walimurid;
 
-    public function __construct(NewsRepository $newsRepository, PaymentRepository $paymentRepository, ClassRepository $classRepository, MuridRepository $muridRepository)
+    public function __construct(NewsRepository $newsRepository, PaymentRepository $paymentRepository, ClassRepository $classRepository, MuridRepository $muridRepository, WaliMuridRepository $waliMuridRepository)
     {
         $this->news = $newsRepository;
         $this->payment = $paymentRepository;
         $this->class = $classRepository;
         $this->murid = $muridRepository;
+        $this->walimurid = $waliMuridRepository;
     }
 
     public function admin_news()
@@ -166,6 +168,39 @@ class YajraDatatablesController extends Controller
             return view('components.data-ajax.yajra-column.data-admin-all-murid.action-column', compact('model'))->render();
         })
         ->rawColumns(['index', 'murid', 'wali_murid', 'action'])
+        ->make(true);
+    }
+
+    public function admin_all_wali_murid()
+    {
+        $waliMurids = $this->walimurid->getAllWaliMurid();
+
+        return DataTables::of($waliMurids)
+        ->addColumn('index', function ($model) use ($waliMurids) {
+            return $waliMurids->search($model) + 1;
+        })
+        ->addColumn('username', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.username-column', compact('model'))->render();
+        })
+        ->addColumn('kelas', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.kelas-column', compact('model'))->render();
+        })
+        ->addColumn('name', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.name-column', compact('model'))->render();
+        })
+        ->addColumn('phone', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.phone-column', compact('model'))->render();
+        })
+        ->addColumn('email', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.email-column', compact('model'))->render();
+        })
+        ->addColumn('created_at', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.registered-at-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-all-murid.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'username', 'kelas', 'name', 'phone', 'email', 'created_at', 'action'])
         ->make(true);
     }
 }

@@ -20,6 +20,7 @@ class WaliMurid extends Model implements HasMedia
         'id',
         'user_id',
         'kelas_id',
+        'name',
         'email',
         'phone'
     ];

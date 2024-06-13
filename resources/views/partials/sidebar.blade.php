@@ -30,6 +30,15 @@
 
       @if (auth()->user()->level == 'admin')
       <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Master</span>
+      </li>
+      <li class="menu-item {{ request()->is('admin/master-wali-murid', 'admin/master-wali-murid/*') ? 'active' : '' }}">
+        <a href="{{ route('admin.master.wali-murid.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons ti ti-users"></i>
+          <div data-i18n="Wali Murid">Wali Murid</div>
+        </a>
+      </li>
+      <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Menu</span>
       </li>
       <li class="menu-item {{ request()->is('admin/news', 'admin/news/*') ? 'active' : '' }}">
