@@ -16,18 +16,49 @@ class WaliMuridSeeder extends Seeder
      */
     public function run(): void
     {
-        $wali_murids = User::where('level', 'wali murid')->get();
-        $kelas = Kelas::all();
+        $kelas = Kelas::all(); // ambil seluruh kelas
 
-        foreach ($wali_murids as $key => $wali_murid) {
-            WaliMurid::create([
-                'id' => Uuid::uuid4()->toString(),
-                'user_id' => $wali_murid->id,
-                'kelas_id' => $kelas[$key]->id,
-                'name' => 'Yoga Pratama',
-                'email' => 'yogapratama76@gmail.com',
-                'phone' => '081234567890'
-            ]);
+        foreach ($kelas as $key => $item) {
+            $wali_murids = User::where('level', 'wali murid'); // sorting data user berdasarkan level wali murid 
+
+            if ($item->name == '2.1') { // sesuaikan dengan nama kelas yang diinginkan
+                $user_id = $wali_murids->where('username', 'walimurid'); // ambil data wali murid dengan username yang diinginkan
+
+                WaliMurid::create([ // proses insert data wali murid
+                    'id' => Uuid::uuid4()->toString(),
+                    'user_id' => $user_id->first()->id,
+                    'kelas_id' => $item->id,
+                    'name' => 'Yoga Pratama',
+                    'email' => 'yogapratama76@gmail.com',
+                    'phone' => '081234567890'
+                ]);
+            }
+
+            if ($item->name == '2.2') {
+                $user_id = $wali_murids->where('username', 'andi');
+
+                WaliMurid::create([
+                    'id' => Uuid::uuid4()->toString(),
+                    'user_id' => $wali_murids->first()->id,
+                    'kelas_id' => $item->id,
+                    'name' => 'Yoga Pratama',
+                    'email' => 'yogapratama76@gmail.com',
+                    'phone' => '081234567890'
+                ]);
+            }
+
+            if ($item->name == '2.3') {
+                $user_id = $wali_murids->where('username', 'budi');
+
+                WaliMurid::create([
+                    'id' => Uuid::uuid4()->toString(),
+                    'user_id' => $wali_murids->first()->id,
+                    'kelas_id' => $item->id,
+                    'name' => 'Yoga Pratama',
+                    'email' => 'yogapratama76@gmail.com',
+                    'phone' => '081234567890'
+                ]);
+            }
         }
     }
 }

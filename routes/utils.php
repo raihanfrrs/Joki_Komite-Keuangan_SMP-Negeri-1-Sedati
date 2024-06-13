@@ -12,6 +12,7 @@ Route::controller(YajraDatatablesController::class)->group(function () {
     Route::get('/listWaliMuridPaymentTable', 'wali_murid_payment');
     Route::get('/listWaliMuridAllMuridTable', 'wali_murid_all_murid');
     Route::get('/listAdminAllMuridTable/{class}', 'admin_all_murid');
+    Route::get('/listAdminAllWaliMuridTable', 'admin_all_wali_murid');
 });
 
 Route::controller(AjaxController::class)->group(function () {
