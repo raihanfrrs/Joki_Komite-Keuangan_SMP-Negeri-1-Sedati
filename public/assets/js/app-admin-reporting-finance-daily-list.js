@@ -18,18 +18,17 @@ $(function () {
     headingColor = config.colors.headingColor;
   }
 
-  var dt_brand_table = $('#listAdminPaymentTable');
+  var dt_brand_table = $('#listAdminReportingFinanceDailyTable');
 
   if (dt_brand_table.length) {
     var dt_user = dt_brand_table.DataTable({
-      ajax: "/listAdminPaymentTable",
+      ajax: "/listAdminReportingFinanceDailyTable",
       columns: [
         { data: '' },
         { data: 'index', class: 'text-center' },
-        { data: 'name', class: 'text-center' },
-        { data: 'kelas', class: 'text-center' },
-        { data: 'date', class: 'text-center' },
-        { data: 'status', class: 'text-center' },
+        { data: 'day', class: 'text-center' },
+        { data: 'total_amount', class: 'text-center' },
+        { data: 'total_nominal', class: 'text-center' },
         { data: 'action' }
       ],
       columnDefs: [
@@ -54,28 +53,21 @@ $(function () {
           targets: 2,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.name;
+            return full.day;
           }
         },
         {
           targets: 3,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.kelas;
+            return full.total_amount;
           }
         },
         {
           targets: 4,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.date;
-          }
-        },
-        {
-          targets: 5,
-          responsivePriority: 4,
-          render: function (data, type, full, meta) {
-            return full.status;
+            return full.total_nominal;
           }
         },
         {
@@ -114,7 +106,7 @@ $(function () {
               text: '<i class="ti ti-printer me-2" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               },
               customize: function (win) {
                 $(win.document.body)
@@ -134,7 +126,7 @@ $(function () {
               text: '<i class="ti ti-file-text me-2" ></i>Csv',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -142,7 +134,7 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -150,7 +142,7 @@ $(function () {
               text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -158,18 +150,11 @@ $(function () {
               text: '<i class="ti ti-copy me-2" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             }
           ]
-        },
-        // {
-        //   text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Berita</span>',
-        //   className: 'add-new btn btn-primary',
-        //   attr: {
-        //     'id': 'button-add-new-news', 
-        //   }
-        // }
+        }
       ],
       // For responsive popup
       responsive: {
@@ -206,34 +191,6 @@ $(function () {
       }
     });
   }
-
-  $(document).on('click', '#button-add-new-news', function () {
-    location.href = '/admin/news/add';
-  })
-
-  // Delete Record
-  $(document).on('click', '#button-delete-cashier', function () {
-    let id = $(this).attr('data-id');
-    let formSelector = ".form-delete-cashier-" + id;
-
-    Swal.fire({
-      title: 'Apa anda yakin?',
-      text: "Data yang di hapus tidak dapat dikembalikan!",
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Batal',
-      confirmButtonText: 'Ya, Hapus!',
-      customClass: {
-        confirmButton: 'btn btn-primary me-3',
-        cancelButton: 'btn btn-label-secondary'
-      },
-      buttonsStyling: false
-    }).then(function (result) {
-      if (result.isConfirmed) {
-        $(formSelector).submit();
-      }
-    });
-  });
 
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization

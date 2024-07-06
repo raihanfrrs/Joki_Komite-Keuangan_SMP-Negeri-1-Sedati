@@ -18,18 +18,17 @@ $(function () {
     headingColor = config.colors.headingColor;
   }
 
-  var dt_brand_table = $('#listPerformanceReportAdminTable');
+  var dt_brand_table = $('#listAdminReportingFinanceMonthlyTable');
 
   if (dt_brand_table.length) {
     var dt_user = dt_brand_table.DataTable({
-      ajax: "/listPerformanceReportAdminTable",
+      ajax: "/listAdminReportingFinanceMonthlyTable",
       columns: [
         { data: '' },
         { data: 'index', class: 'text-center' },
-        { data: 'cashier', class: 'text-center' },
-        { data: 'transaction', class: 'text-center' },
-        { data: 'qty_sold', class: 'text-center' },
-        { data: 'income', class: 'text-center' },
+        { data: 'month', class: 'text-center' },
+        { data: 'total_amount', class: 'text-center' },
+        { data: 'total_nominal', class: 'text-center' },
         { data: 'action' }
       ],
       columnDefs: [
@@ -54,28 +53,21 @@ $(function () {
           targets: 2,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.cashier;
+            return full.month;
           }
         },
         {
           targets: 3,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.transaction;
+            return full.total_amount;
           }
         },
         {
           targets: 4,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            return full.qty_sold;
-          }
-        },
-        {
-          targets: 5,
-          responsivePriority: 4,
-          render: function (data, type, full, meta) {
-            return full.income;
+            return full.total_nominal;
           }
         },
         {
@@ -114,7 +106,7 @@ $(function () {
               text: '<i class="ti ti-printer me-2" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               },
               customize: function (win) {
                 $(win.document.body)
@@ -134,7 +126,7 @@ $(function () {
               text: '<i class="ti ti-file-text me-2" ></i>Csv',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -142,7 +134,7 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -150,7 +142,7 @@ $(function () {
               text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             },
             {
@@ -158,7 +150,7 @@ $(function () {
               text: '<i class="ti ti-copy me-2" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [1, 2, 3, 4, 5],
+                columns: [1, 2, 3, 4],
               }
             }
           ]

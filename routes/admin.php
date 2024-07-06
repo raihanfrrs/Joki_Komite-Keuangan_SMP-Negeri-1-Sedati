@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminMasterController;
 use App\Http\Controllers\AdminNewsController;
 use App\Http\Controllers\AdminPaymentController;
+use App\Http\Controllers\AdminReportingController;
 use App\Http\Controllers\AdminSettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +43,16 @@ Route::group(['middleware' => ['cekUserLogin:admin']], function(){
     Route::controller(AdminSettingsController::class)->group(function () {
         Route::get('admin/setting', 'admin_setting_index')->name('admin.setting.index');
         Route::patch('admin/setting', 'admin_setting_update')->name('admin.setting.update');
+    });
+
+    Route::controller(AdminReportingController::class)->group(function () {
+        Route::get('rekap/keuangan-tahunan', 'admin_reporting_finance_yearly')->name('admin.reporting.finance.yearly.index');
+        Route::get('rekap/keuangan-tahunan/{year}/print', 'admin_reporting_finance_yearly_print')->name('admin.reporting.finance.yearly.print');
+
+        Route::get('rekap/keuangan-bulanan', 'admin_reporting_finance_monthly')->name('admin.reporting.finance.monthly.index');
+        Route::get('rekap/keuangan-bulanan/{month}/print', 'admin_reporting_finance_monthly_print')->name('admin.reporting.finance.monthly.print');
+
+        Route::get('rekap/keuangan-harian', 'admin_reporting_finance_daily')->name('admin.reporting.finance.daily.index');
+        Route::get('rekap/keuangan-harian/{date}/print', 'admin_reporting_finance_daily_print')->name('admin.reporting.finance.daily.print');
     });
 });

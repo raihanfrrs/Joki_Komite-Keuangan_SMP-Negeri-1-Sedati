@@ -37,17 +37,17 @@ class DaftarWaliMuridImport implements ToCollection
             return;
         }
 
-        foreach (User::where('level', 'wali_murid')->get() as $key => $users) {
-            $users->delete();
-        }
+        // foreach (User::where('level', 'wali_murid')->get() as $key => $users) {
+        //     $users->delete();
+        // }
 
-        foreach (Kelas::all() as $key => $kelas) {
-            $kelas->delete();
-        }
+        // foreach (Kelas::all() as $key => $kelas) {
+        //     $kelas->delete();
+        // }
 
-        foreach (WaliMurid::all() as $key => $walimurid) {
-            $walimurid->delete();
-        }
+        // foreach (WaliMurid::all() as $key => $walimurid) {
+        //     $walimurid->delete();
+        // }
 
         $indexKe = 1;
 
@@ -60,26 +60,28 @@ class DaftarWaliMuridImport implements ToCollection
                 $data['ponsel'] = !empty($row[4]) ? $row[4] : null;
                 $data['surel'] = !empty($row[5]) ? $row[5] : null;
 
-                $user = User::create([
-                    'id' => Uuid::uuid4()->toString(),
-                    'username' => $data['username'],
-                    'password' => bcrypt($data['password'])
-                ]);
-
-                $kelas = Kelas::create([
-                    'id' => Uuid::uuid4()->toString(),
-                    'admin_id' => auth()->user()->admin->id,
-                    'name' => $data['kelas']
-                ]);
-
-                WaliMurid::create([
-                    'id' => Uuid::uuid4()->toString(),
-                    'user_id' => $user->id,
-                    'kelas_id' => $kelas->id,
-                    'name' => $data['name'],
-                    'phone' => $data['ponsel'],
-                    'email' => $data['surel']
-                ]);
+                if (Kelas::where('name', $data['kelas'])->count() == 0) {
+                    $user = User::create([
+                        'id' => Uuid::uuid4()->toString(),
+                        'username' => $data['username'],
+                        'password' => bcrypt($data['password'])
+                    ]);
+    
+                    $kelas = Kelas::create([
+                        'id' => Uuid::uuid4()->toString(),
+                        'admin_id' => auth()->user()->admin->id,
+                        'name' => $data['kelas']
+                    ]);
+    
+                    WaliMurid::create([
+                        'id' => Uuid::uuid4()->toString(),
+                        'user_id' => $user->id,
+                        'kelas_id' => $kelas->id,
+                        'name' => $data['name'],
+                        'phone' => $data['ponsel'],
+                        'email' => $data['surel']
+                    ]);
+                }
             }
 
             $indexKe++;

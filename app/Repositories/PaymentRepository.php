@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
@@ -101,5 +102,54 @@ class PaymentRepository
             'admin_id' => auth()->user()->admin->id,
             'status' => $type
         ]);
+    }
+
+    public function getAllPaymentsGroupByPeriodically($periodic)
+    {
+        $groupByClause = '';
+
+        switch ($periodic) {
+            case 'day':
+                $groupByClause = DB::raw('DATE(payments.created_at) as period');
+                break;
+            case 'month':
+                $groupByClause = DB::raw('DATE_FORMAT(payments.created_at, "%M-%Y") as period');
+                break;
+            case 'year':
+                $groupByClause = DB::raw('YEAR(payments.created_at) as period');
+                break;
+            default:
+                break;
+        }
+
+        return Payment::select(DB::raw('SUM(nominal) as total_nominal'), DB::raw('COUNT(payments.id) as total_amount'), $groupByClause)
+            ->where('status', 'approve')
+            ->groupBy('period')
+            ->get();
+    }
+
+    public function getAllPaymentsByYear($year)
+    {
+        return Payment::where('status', 'approve')
+                        ->whereYear('created_at', $year)
+                        ->get();
+    }
+
+    public function getAllPaymentsByMonth($month)
+    {
+        $timestamp = Carbon::createFromFormat('F-Y', $month)->startOfMonth();
+
+        return Payment::where('status', 'approve')
+                        ->whereBetween('created_at', [$timestamp->format('Y-m-d H:i:s'), $timestamp->endOfMonth()->format('Y-m-d H:i:s')])
+                        ->get();
+    }
+
+    public function getAllPaymentsByDay($day)
+    {
+        $timestamp = strtotime($day);
+
+        return Payment::where('status', 'approve')
+                        ->whereDate('created_at', '=', date('Y-m-d', $timestamp))
+                        ->get();
     }
 }
