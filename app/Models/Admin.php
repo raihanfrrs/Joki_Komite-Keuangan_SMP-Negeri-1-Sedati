@@ -18,6 +18,7 @@ class Admin extends Model implements HasMedia
     protected $fillable = [
         'id',
         'user_id',
+        'name',
         'email',
         'phone'
     ];
@@ -48,5 +49,10 @@ class Admin extends Model implements HasMedia
     public function kelas()
     {
         return $this->hasMany(Kelas::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

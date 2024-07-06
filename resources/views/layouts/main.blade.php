@@ -77,9 +77,15 @@
 
     @include('components.modal.modal')
 
+    @include('components.utils.auto-checked')
+
     @auth
-        @if (request()->is('invoice/*/print') || request()->is('admin/sales-report-print/*/*') || request()->is('admin/invoice/*/*'))
+        @if (request()->is('rekap/keuangan-tahunan/*/print') || request()->is('rekap/keuangan-bulanan/*/print') || request()->is('rekap/keuangan-harian/*/print'))
             @yield('section-print')
+
+            <script>
+                window.print();
+            </script>
         @elseif (request()->is('404', '403'))
             @yield('section-error')
         @else
@@ -167,6 +173,12 @@
                 <script src="{{ asset('assets/js/app-admin-all-murid-list.js') }}"></script>
             @elseif (request()->is('admin/master-wali-murid'))
                 <script src="{{ asset('assets/js/app-admin-all-wali-murid-list.js') }}"></script>
+            @elseif (request()->is('rekap/keuangan-tahunan'))
+                <script src="{{ asset('assets/js/app-admin-reporting-finance-yearly-list.js') }}"></script>
+            @elseif (request()->is('rekap/keuangan-bulanan'))
+                <script src="{{ asset('assets/js/app-admin-reporting-finance-monthly-list.js') }}"></script>
+            @elseif (request()->is('rekap/keuangan-harian'))
+                <script src="{{ asset('assets/js/app-admin-reporting-finance-daily-list.js') }}"></script>
             @endif
         @elseif (auth()->user()->level == 'wali murid')
             @if (request()->is('wali-murid/news'))

@@ -59,6 +59,33 @@
           <div data-i18n="Kelas">Kelas</div>
         </a>
       </li>
+
+      <li class="menu-header small text-uppercase">
+        <span class="menu-header-text">Rekap</span>
+      </li>
+      <li class="menu-item {{ request()->is('rekap/keuangan-tahunan', 'rekap/keuangan-tahunan/*/*', 'rekap/keuangan-bulanan', 'rekap/keuangan-bulanan/*/*', 'rekap/keuangan-harian', 'rekap/keuangan-harian/*/*') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons ti ti-clipboard"></i>
+          <div data-i18n="Keuangan">Keuangan</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item {{ request()->is('rekap/keuangan-tahunan', 'rekap/keuangan-tahunan/*/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.reporting.finance.yearly.index') }}" class="menu-link">
+              <div data-i18n="Tahunan">Tahunan</div>
+            </a>
+          </li>
+          <li class="menu-item {{ request()->is('rekap/keuangan-bulanan', 'rekap/keuangan-bulanan/*/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.reporting.finance.monthly.index') }}" class="menu-link">
+              <div data-i18n="Bulanan">Bulanan</div>
+            </a>
+          </li>
+          <li class="menu-item {{ request()->is('rekap/keuangan-harian', 'rekap/keuangan-harian/*/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.reporting.finance.daily.index') }}" class="menu-link">
+              <div data-i18n="Harian">Harian</div>
+            </a>
+          </li>
+        </ul>
+      </li>
       @elseif (auth()->user()->level == 'wali murid')
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Menu</span>
