@@ -56,6 +56,9 @@ class YajraDatatablesController extends Controller
         ->addColumn('name', function ($model) {
             return view('components.data-ajax.yajra-column.data-admin-payment.name-column', compact('model'))->render();
         })
+        ->addColumn('kelas', function ($model) {
+            return view('components.data-ajax.yajra-column.data-admin-payment.kelas-column', compact('model'))->render();
+        })
         ->addColumn('date', function ($model) {
             return view('components.data-ajax.yajra-column.data-admin-payment.date-column', compact('model'))->render();
         })
@@ -65,7 +68,7 @@ class YajraDatatablesController extends Controller
         ->addColumn('action', function ($model) {
             return view('components.data-ajax.yajra-column.data-admin-payment.action-column', compact('model'))->render();
         })
-        ->rawColumns(['index', 'name', 'date', 'status', 'action'])
+        ->rawColumns(['index', 'name', 'kelas', 'date', 'status', 'action'])
         ->make(true);
     }
 
@@ -201,6 +204,78 @@ class YajraDatatablesController extends Controller
             return view('components.data-ajax.yajra-column.data-admin-all-wali-murid.action-column', compact('model'))->render();
         })
         ->rawColumns(['index', 'username', 'kelas', 'name', 'phone', 'email', 'created_at', 'action'])
+        ->make(true);
+    }
+
+    public function admin_reporting_finance_yearly()
+    {
+        $payments = $this->payment->getAllPaymentsGroupByPeriodically('year');
+
+        return DataTables::of($payments)
+        ->addColumn('index', function ($model) use ($payments) {
+            return $payments->search($model) + 1;
+        })
+        ->addColumn('year', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-yearly.year-column', compact('model'))->render();
+        })
+        ->addColumn('total_amount', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-yearly.total-amount-column', compact('model'))->render();
+        })
+        ->addColumn('total_nominal', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-yearly.total-nominal-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-yearly.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'year', 'total_amount', 'total_nominal', 'action'])
+        ->make(true);
+    }
+
+    public function admin_reporting_finance_monthly()
+    {
+        $payments = $this->payment->getAllPaymentsGroupByPeriodically('month');
+
+        return DataTables::of($payments)
+        ->addColumn('index', function ($model) use ($payments) {
+            return $payments->search($model) + 1;
+        })
+        ->addColumn('month', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-monthly.month-column', compact('model'))->render();
+        })
+        ->addColumn('total_amount', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-monthly.total-amount-column', compact('model'))->render();
+        })
+        ->addColumn('total_nominal', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-monthly.total-nominal-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-monthly.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'year', 'total_amount', 'total_nominal', 'action'])
+        ->make(true);
+    }
+
+    public function admin_reporting_finance_daily()
+    {
+        $payments = $this->payment->getAllPaymentsGroupByPeriodically('day');
+
+        return DataTables::of($payments)
+        ->addColumn('index', function ($model) use ($payments) {
+            return $payments->search($model) + 1;
+        })
+        ->addColumn('day', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-daily.day-column', compact('model'))->render();
+        })
+        ->addColumn('total_amount', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-daily.total-amount-column', compact('model'))->render();
+        })
+        ->addColumn('total_nominal', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-daily.total-nominal-column', compact('model'))->render();
+        })
+        ->addColumn('action', function ($model) {
+            return view('components.data-ajax.yajra-column.data-reporting-finance-daily.action-column', compact('model'))->render();
+        })
+        ->rawColumns(['index', 'year', 'total_amount', 'total_nominal', 'action'])
         ->make(true);
     }
 }

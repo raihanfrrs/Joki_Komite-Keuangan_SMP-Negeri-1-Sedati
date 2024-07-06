@@ -37,4 +37,14 @@ class Payment extends Model implements HasMedia
             ->height(232)
             ->sharpen(10);
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function wali_murid()
+    {
+        return $this->belongsTo(WaliMurid::class);
+    }
 }

@@ -1,0 +1,1 @@
+{{ $model->total_amount }}

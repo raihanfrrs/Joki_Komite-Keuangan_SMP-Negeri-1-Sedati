@@ -53,4 +53,9 @@ class WaliMurid extends Model implements HasMedia
     {
         return $this->belongsTo(Kelas::class);
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

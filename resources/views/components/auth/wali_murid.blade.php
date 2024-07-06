@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-  Masuk - Admin
+  Masuk - Wali Murid
 @endsection
 
 @section('section-authentication')
@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="app-brand justify-content-center mb-4 mt-2">
                         <a href="/" class="app-brand-link gap-2">
-                            <img src="{{ asset('assets/img/branding/brand-smp-negeri-sedati.png') }}" alt="">
+                            <img src="{{ asset('assets/img/branding/brand-smp-negeri-sedati.png') }}" alt="">  <!-- ini gambar logonya, cukup ganti sesuai nama file gambarnya "brand-smp-negeri-sedati.png" << ini yang diganti -->
                         </a>
                     </div>
 

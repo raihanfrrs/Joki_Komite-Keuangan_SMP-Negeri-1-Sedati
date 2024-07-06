@@ -28,7 +28,7 @@
           </div>
           <form action="{{ route('admin.master.wali-murid.import-wali-murid') }}" class="d-inline" method="POST" enctype="multipart/form-data">
             @csrf
-            <span class="text-danger d-block"><sup>*</sup>Data Sebelumnya Akan Di Timpa</span>
+            {{-- <span class="text-danger d-block"><sup>*</sup>Data Sebelumnya Akan Di Timpa</span> --}}
             <input type="file" name="file" id="file" class="form-control @error('file') is-invalid @enderror" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
             <span class="text-danger">@error('file') {{ $message }} @enderror</span>
             <button type="submit" class="btn btn-primary mt-2">Import</button>
