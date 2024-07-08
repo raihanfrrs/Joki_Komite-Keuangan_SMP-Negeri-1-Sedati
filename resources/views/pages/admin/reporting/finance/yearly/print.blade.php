@@ -5,6 +5,7 @@
 @endsection
 
 @section('section-print')
+<h1 class="card-title mb-3 text-center">Rekap Keuangan Tahunan {{ $year }}</h1>
 <table class="table m-0">
     <thead class="table-light">
         <tr>

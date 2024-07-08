@@ -1,1 +1,1 @@
-{{ \Carbon\Carbon::parse($model->period)->format('Y') }}
+{{ $model->period }}
