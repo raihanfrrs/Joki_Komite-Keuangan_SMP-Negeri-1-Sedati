@@ -23,7 +23,7 @@ class AdminReportingController extends Controller
     {
         $payments = $this->payment->getAllPaymentsByYear($year);
 
-        return view('pages.admin.reporting.finance.yearly.print', compact('payments'));
+        return view('pages.admin.reporting.finance.yearly.print', compact('payments', 'year'));
     }
 
     public function admin_reporting_finance_monthly()
@@ -35,7 +35,7 @@ class AdminReportingController extends Controller
     {
         $payments = $this->payment->getAllPaymentsByMonth($month);
 
-        return view('pages.admin.reporting.finance.monthly.print', compact('payments'));
+        return view('pages.admin.reporting.finance.monthly.print', compact('payments', 'month'));
     }
 
     public function admin_reporting_finance_daily()
@@ -47,6 +47,6 @@ class AdminReportingController extends Controller
     {
         $payments = $this->payment->getAllPaymentsByDay($day);
 
-        return view('pages.admin.reporting.finance.daily.print', compact('payments'));
+        return view('pages.admin.reporting.finance.daily.print', compact('payments', 'day'));
     }
 }
